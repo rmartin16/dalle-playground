@@ -31,16 +31,32 @@ services:
   dalle-interface:
     container_name: dalle-interface
     build:
-      context: ./interface
+      context: ./interface_streamlit
       dockerfile: Dockerfile
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
+      - "DALLE_URL=http://10.16.8.5:18080"
     restart: unless-stopped
     ports:
-      - 13000:3000
+      - 13000:8501
     labels:
       - com.centurylinklabs.watchtower.enable=false
-    stdin_open: true
-    tty: true
+
+#  dalle-interface:
+#    container_name: dalle-interface
+#    build:
+#      context: ./interface
+#      dockerfile: Dockerfile
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=America/New_York
+#    restart: unless-stopped
+#    ports:
+#      - 13000:3000
+#    labels:
+#      - com.centurylinklabs.watchtower.enable=false
+#    stdin_open: true
+#    tty: true
